@@ -16,14 +16,15 @@ app.add_middleware(
         "http://localhost:8000",
         "http://127.0.0.1:8000",
         "https://fifa-smart-stadium.firebaseapp.com",
-        "https://fifa-smart-stadium.web.app"
+        "https://fifa-smart-stadium.web.app",
+        "https://fifa-smart-stadium-ui.onrender.com"
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-@app.get("/health")
+@app.get("/api/v1/health")
 def health_check():
     return {"status": "operational"}
 
