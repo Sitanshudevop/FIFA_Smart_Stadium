@@ -15,6 +15,9 @@
 
 </div>
 
+
+Live Link : https://fifa-smart-stadium-ui.onrender.com
+
 ---
 
 ## 🌟 Executive Overview
