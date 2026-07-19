@@ -10,7 +10,7 @@
 [![CI/CD](https://github.com/Sitanshudevop/FIFA_Smart_Stadium/actions/workflows/test-suite.yml/badge.svg)](https://github.com/Sitanshudevop/FIFA_Smart_Stadium/actions)
 
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/fa/2026_FIFA_World_Cup.svg/440px-2026_FIFA_World_Cup.svg.png" alt="FIFA 2026 Logo" width="200"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/2026_FIFA_World_Cup_emblem.svg" alt="FIFA 2026 Logo" width="200"/>
 </p>
 
 </div>
