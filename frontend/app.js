@@ -12,7 +12,7 @@
 (() => {
     "use strict";
 
-    const API_BASE = "http://localhost:8000/api/v1";
+    const API_BASE = "https://fifa-backend-api.onrender.com/api/v1";
 
     // ══════════════════════════════════════════════════════════════════════
     //  DOM REFERENCES
