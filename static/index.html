@@ -2028,12 +2028,12 @@ Awaiting simulation parameters...
                     }
 
                     // Update Heatmap UI dynamically
-                                        const zoneId = "zone-" + data.zone.replace("Zone ", "");
+                                        const zoneId = "zone-" + (data.zone || "").replace("Zone ", "");
                     const targetZone = document.getElementById(zoneId);
                     if (targetZone) {
                         targetZone.className = "bg-orange-50 dark:bg-orange-900/40 border-2 border-orange-500 dark:border-orange-600 rounded-xl min-h-[90px] h-auto p-3 flex flex-col items-center justify-center text-center shadow-[0_0_20px_rgba(249,115,22,0.4)] animate-pulse transition-all duration-300 cursor-pointer relative";
                         targetZone.innerHTML = `
-                            <span class="font-bold text-orange-700 dark:text-orange-300 text-lg relative z-10">${data.zone.replace("Zone ", "Z-")}</span>
+                            <span class="font-bold text-orange-700 dark:text-orange-300 text-lg relative z-10">${(data.zone || "").replace("Zone ", "Z-")}</span>
                             <span class="text-[11px] uppercase font-bold text-orange-600 dark:text-orange-400 mt-1 break-words tracking-widest relative z-10">Forecast Alert</span>
                         `;
                     }

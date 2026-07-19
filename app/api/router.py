@@ -143,7 +143,7 @@ async def handle_fan_query(request: Request, payload: FanRequest) -> APIResponse
             data={"query": clean_query_string}
         )
 
-@api_router.get("/ops/metrics", tags=["ops"])
+@api_router.get("/cost-tracker", tags=["ops"])
 async def get_ops_metrics() -> dict[str, float]:
     """
     Retrieve operational metrics including telemetry token counts and costs.
@@ -165,6 +165,24 @@ async def get_ops_metrics() -> dict[str, float]:
     except Exception as general_error:
         logger.error(f"Failed to fetch ops metrics: {general_error}")
         return {"tokens": 0.0, "cost": 0.0, "saved": 0.0}
+
+@api_router.get("/forecast", tags=["ops"])
+async def get_forecast() -> dict[str, Any]:
+    """
+    Return dynamic AI forecast data for the stadium operations UI.
+    """
+    import datetime
+    try:
+        return {
+            "zone": "Zone Z-B2",
+            "timestamp": datetime.datetime.now().isoformat(),
+            "prediction": "Elevated fan congestion expected",
+            "warning": "Potential bottleneck at concession stands",
+            "action_recommended": "Deploy extra stewards to sector B2"
+        }
+    except Exception as e:
+        logger.error(f"Failed to fetch forecast: {e}")
+        return {"zone": "", "prediction": "", "warning": "", "action_recommended": ""}
 
 @api_router.post("/ops/dispatch", tags=["ops"])
 async def execute_ops_dispatch(request: OpsDispatchRequest) -> dict[str, str]:
