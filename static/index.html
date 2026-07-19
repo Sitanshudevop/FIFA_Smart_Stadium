@@ -28,7 +28,7 @@
     
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://accounts.google.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://fifa-smart-stadium.firebaseapp.com https://fifa-smart-stadium.web.app https://accounts.google.com; img-src 'self' data: https:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://accounts.google.com https://apis.google.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://fifa-smart-stadium.firebaseapp.com https://fifa-smart-stadium.web.app https://accounts.google.com; img-src 'self' data: https: https://unpkg.com https://*.basemaps.cartocdn.com;">
     <title>FIFA 2026 Smart Stadium Command</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
         window.addEventListener('beforeunload', () => {
@@ -304,7 +304,7 @@
         </div>
     </div>
 </div>
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer" data-icon="sync" id="btn-sync">sync</button>
+
 <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer" data-icon="dark_mode" id="btn-theme">dark_mode</button>
 <!-- Profile Dropdown -->
 <div class="relative inline-flex items-center gap-4" id="auth-container">
@@ -508,19 +508,19 @@
 </div>
 <div class="border-2 border-dashed border-outline-variant hover:border-secondary bg-surface-container-low/50 rounded-xl p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-colors group mb-6" id="drop-zone">
 <span class="material-symbols-outlined text-outline group-hover:text-secondary text-[32px] mb-2 transition-colors">upload_file</span>
-<p class="font-body-md text-body-md text-on-surface font-medium">Upload Ticket or Landmark</p>
-<p class="font-label-md text-label-md text-on-surface-variant mt-1">Drag &amp; drop or click to browse</p>
+<p class="font-body-md text-body-md text-on-surface font-medium" data-i18n="fp_upload">Upload Ticket or Landmark</p>
+<p class="font-label-md text-label-md text-on-surface-variant mt-1" data-i18n="fp_drag">Drag &amp; drop or click to browse</p>
 </div>
 <button class="w-full bg-transparent border border-primary text-primary hover:bg-primary-fixed/20 font-label-md text-label-md py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors mb-4" id="btn-choose-image">
 <span class="material-symbols-outlined text-[18px]">image</span>
-                            CHOOSE IMAGE
+                            <span data-i18n="fp_choose">CHOOSE IMAGE</span>
                         </button>
 <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-2xl p-6 shadow-sm text-gray-800 dark:text-gray-300 mt-2 transition-colors">
 <div class="flex items-center gap-2 mb-3">
 <span class="material-symbols-outlined text-secondary">smart_toy</span>
-<span class="font-bold text-sm tracking-wide text-secondary uppercase">AI Navigation Assistant</span>
+<span class="font-bold text-sm tracking-wide text-secondary uppercase" data-i18n="fp_ai_nav">AI Navigation Assistant</span>
 </div>
-                            <div class="font-sans text-base leading-relaxed">Waiting for visual input to provide contextual routing...</div>
+                            <div class="font-sans text-base leading-relaxed" data-i18n="fp_ai_wait">Waiting for visual input to provide contextual routing...</div>
                         </div>
 </div>
 <!-- Accessibility Panel Card -->
@@ -1617,12 +1617,7 @@ Awaiting simulation parameters...
             if (btnTheme) btnTheme.addEventListener('click', toggleTheme);
             if (btnThemeLanding) btnThemeLanding.addEventListener('click', toggleTheme);
 
-            // Sync Toggle
-            const btnSync = document.getElementById('btn-sync');
-            btnSync.addEventListener('click', () => {
-                btnSync.classList.toggle('text-primary');
-                alert("Live sync toggled.");
-            });
+
 
             // Profile Dropdown Toggle Logic
             const btnProfile = document.getElementById('btn-profile');
@@ -1677,7 +1672,7 @@ Awaiting simulation parameters...
             const handleFileUpload = async (file) => {
                 if (!file) return;
                 
-                const getHeader = () => `<div class="flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-secondary">smart_toy</span><span class="font-bold text-sm tracking-wide text-secondary uppercase">AI Navigation Assistant</span></div>`;
+                const getHeader = () => `<div class="flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-secondary">smart_toy</span><span class="font-bold text-sm tracking-wide text-secondary uppercase" data-i18n="fp_ai_nav">AI Navigation Assistant</span></div>`;
                 
                 terminalOutput.innerHTML = getHeader() + `
                     <div class="flex flex-col gap-3">
@@ -1689,6 +1684,7 @@ Awaiting simulation parameters...
                 
                 const formData = new FormData();
                 formData.append('file', file);
+                formData.append('language', window.currentLanguageName || 'English');
 
                 try {
                     const apiResponsePayload = await fetch(`${API_BASE}/vision/navigate`, {
@@ -1714,6 +1710,7 @@ Awaiting simulation parameters...
                     }
                     
                     terminalOutput.innerHTML = getHeader() + `<div class="font-sans text-base leading-relaxed">${textOutput}</div>` + badgeHtml;
+                    if (window.currentLangCode) translatePage(window.currentLangCode);
                     
                     const autoVoice = document.getElementById('toggle-voice').checked;
                     if (autoVoice && data.screen_reader_text) {
@@ -1728,7 +1725,7 @@ Awaiting simulation parameters...
             btnChooseImage.addEventListener('click', () => fileInput.click());
             dropZone.addEventListener('click', () => fileInput.click());
             
-            fileInput.addEventListener('change', (e) => {
+            fileInput.addEventListener('change', (clickEvent) => {
                 if (clickEvent.target.files.length > 0) handleFileUpload(clickEvent.target.files[0]);
             });
 
@@ -1768,7 +1765,7 @@ Awaiting simulation parameters...
                             const apiResponsePayload = await bypassFetch(`${API_BASE}/fan/assist`, {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ message, language: 'en', simplify_language: false, stadium: window.globalStadiumContext })
+                                body: JSON.stringify({ message, language: window.currentLanguageName || 'English', simplify_language: false, stadium: window.globalStadiumContext })
                             });
                             
                             if (apiResponsePayload.ok) {
@@ -2040,7 +2037,7 @@ Awaiting simulation parameters...
                             <span class="text-[11px] uppercase font-bold text-orange-600 dark:text-orange-400 mt-1 break-words tracking-widest relative z-10">Forecast Alert</span>
                         `;
                     }
-                } catch(clickEvent) { console.error("Error:", errorResponse); }
+                } catch(errorResponse) { console.error("Error:", errorResponse); }
             }, 3000);
 
             // Language Dropdown Toggle Logic
@@ -2050,7 +2047,7 @@ Awaiting simulation parameters...
                 const caret = document.getElementById(caretId);
                 
                 if (btn && menu) {
-                    btn.addEventListener('click', (e) => {
+                    btn.addEventListener('click', (clickEvent) => {
                         clickEvent.stopPropagation();
                         const isHidden = menu.classList.contains('hidden');
                         
@@ -2109,7 +2106,12 @@ Awaiting simulation parameters...
                     'fp_express': 'Express In-Seat Delivery',
                     'fp_vision': 'Vision-Based Guide',
                     'fp_access': 'Accessibility',
-                    'fp_pass': 'Digital Tournament Passport',
+                    'fp_pass': 'Digital Tournament Pass',
+                    'fp_upload': 'Upload Ticket or Landmark',
+                    'fp_drag': 'Drag & drop or click to browse',
+                    'fp_choose': 'CHOOSE IMAGE',
+                    'fp_ai_nav': 'AI Navigation Assistant',
+                    'fp_ai_wait': 'Waiting for visual input to provide contextual routing...',
                     'ops_title': 'Tactical Command',
                     'ops_desc': 'Real-time stadium telemetry and incident mitigation.'
                 },
@@ -2170,8 +2172,6 @@ Awaiting simulation parameters...
                     'sim_desc': 'GenAI "Was-wäre-wenn"-Szenarien zur Modellierung der Zuschauerdynamik und Risikominderung.',
                     'disp_title': 'Agentische Freiwilligen-Disposition',
                     'disp_desc': 'Intelligente Ressourcenzuweisung basierend auf Schweregrad und Nähe.',
-                    'btn_fan': 'Fan-Portal',
-                    'btn_ops': 'Einsatzraum',
                     'fp_title': 'Fan-Erlebnis-Portal',
                     'fp_desc': 'Intelligente Assistenz und Barrierefreiheitskontrollen für Stadionbesucher.',
                     'fp_card1': 'Mehrsprachiger Assistent',
@@ -2206,6 +2206,11 @@ Awaiting simulation parameters...
                     'fp_vision': 'विज़न-आधारित गाइड',
                     'fp_access': 'अभिगम्यता',
                     'fp_pass': 'डिजिटल टूर्नामेंट पासपोर्ट',
+                    'fp_upload': 'टिकट या लैंडमार्क अपलोड करें',
+                    'fp_drag': 'खींचें और छोड़ें या ब्राउज़ करने के लिए क्लिक करें',
+                    'fp_choose': 'छवि चुनें',
+                    'fp_ai_nav': 'एआई नेविगेशन सहायक',
+                    'fp_ai_wait': 'प्रासंगिक रूटिंग प्रदान करने के लिए दृश्य इनपुट की प्रतीक्षा कर रहा है...',
                     'ops_title': 'सामरिक कमान',
                     'ops_desc': 'रीयल-टाइम स्टेडियम टेलीमेट्री और घटना शमन।'
                 }
@@ -2357,6 +2362,7 @@ Awaiting simulation parameters...
                 .catch(errorResponse => console.error("Error fetching bracket:", errorResponse));
 
             const translatePage = (langCode) => {
+                window.currentLangCode = langCode;
                 const dict = translations[langCode] || translations['en'];
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
@@ -2371,8 +2377,9 @@ Awaiting simulation parameters...
             };
 
             document.querySelectorAll('.btn-lang-option').forEach(btn => {
-                btn.addEventListener('click', (e) => {
+                btn.addEventListener('click', (clickEvent) => {
                     const langCode = clickEvent.target.getAttribute('data-lang');
+                    window.currentLanguageName = clickEvent.target.innerText.trim();
                     translatePage(langCode);
                     
                     // Close the dropdown after selection
@@ -2469,7 +2476,7 @@ Awaiting simulation parameters...
         if (savedUser) {
             try {
                 updateAuthUI(JSON.parse(savedUser));
-            } catch(clickEvent) {}
+            } catch(errorResponse) {}
         }
     
         window.addEventListener('beforeunload', () => {

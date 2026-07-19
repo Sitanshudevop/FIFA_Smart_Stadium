@@ -3,10 +3,15 @@ import re
 def sanitize_user_input(text: str) -> str:
     # Strip markdown escapes
     text = text.replace('\\', '')
-    # Normalize whitespace
-    text = re.sub(r'\s+', ' ', text).strip()
-    # Truncate aggressively to prevent buffer overflow/prompt bomb attacks
-    text = text[:500]
+    
+    # Exclude base64 strings from aggressive truncation
+    is_base64_image = text.startswith('data:image/') or text.startswith('/9j/') or text.startswith('iVBORw0K')
+    
+    if not is_base64_image:
+        # Normalize whitespace
+        text = re.sub(r'\s+', ' ', text).strip()
+        # Truncate aggressively to prevent buffer overflow/prompt bomb attacks
+        text = text[:500]
     
     # Neutralize injection payloads
     injection_patterns = [

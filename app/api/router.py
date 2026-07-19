@@ -271,7 +271,7 @@ async def handle_fan_assist(request: Request, payload: FanAssistRequest) -> dict
         system_prompt_instruction = (
             f"You are a helpful stadium assistant for the FIFA 2026 World Cup. The user is currently located at {payload.stadium} ({location_coordinate_string}). Answer their query based specifically on the layout, amenities, and environment of this exact stadium. "
             f"Keep your response extremely concise, ideally 1-3 sentences maximum. "
-            f"Respond in the language code '{payload.language}'.{language_simplification_instruction} "
+            f"You must reply in the following language: {payload.language}. {language_simplification_instruction} "
             f"Fan query: {clean_message_string}"
         )
 

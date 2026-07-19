@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile, File
+from fastapi import APIRouter, UploadFile, File, Form
 import asyncio
 import time
 from fastapi.responses import JSONResponse
@@ -12,7 +12,7 @@ from app.core.telemetry import log_metric
 router = APIRouter(prefix="/vision", tags=["vision"])
 
 @router.post("/navigate", response_model=NavigationResponse)
-async def navigate_vision(file: UploadFile = File(...)):
+async def navigate_vision(file: UploadFile = File(...), language: str = Form("English")):
     # CRITICAL CONSTRAINT: Read directly into memory byte buffer. No disk writing.
     file_bytes = await file.read()
     
@@ -32,8 +32,9 @@ async def navigate_vision(file: UploadFile = File(...)):
             client = genai.Client()
         
         prompt = (
-            "Extract text from this stadium ticket or sign. Determine the orientation, "
-            "and provide contextual routing instructions for a fan. Adhere strictly to the required schema."
+            f"Extract text from this stadium ticket or sign. Determine the orientation, "
+            f"and provide contextual routing instructions for a fan. Adhere strictly to the required schema.\n"
+            f"CRITICAL INSTRUCTION: You MUST translate and generate all output fields (including screen_reader_text and instructions) entirely in {language}. Do not use English."
         )
         
         # Phase 7: Timeout Gateways
@@ -46,6 +47,7 @@ async def navigate_vision(file: UploadFile = File(...)):
             config=types.GenerateContentConfig(
                 response_mime_type="application/json",
                 response_schema=NavigationResponse,
+                system_instruction=f"You MUST generate your entire JSON response in the following language: {language}",
             )
         ), timeout=60.0)
         
