@@ -1,0 +1,31 @@
+# Python virtual environments
+venv/
+env/
+.env
+
+# Cache directories
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Local model weights, vector databases, and media assets
+*.pt
+*.bin
+*.safetensors
+faiss_index/
+chroma_db/
+*.mp4
+*.png
+
+# Mock datasets and large logs
+*.csv
+*.log
+
+# Service Account Keys
+*-*.json
+
+# Scratch files
+*.txt
+!requirements.txt
+
+scratch.py

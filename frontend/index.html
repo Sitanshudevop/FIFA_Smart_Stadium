@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Smart Stadium Operations — FIFA World Cup 2026 command dashboard for real-time incident management, multilingual fan services, and operational intelligence." />
+    <meta name="theme-color" content="#0b0e17" />
+    <title>Smart Stadium Ops — FIFA World Cup 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <!-- ═══ Skip Navigation (Accessibility) ═══════════════════════════════ -->
+    <a id="skip-nav" class="skip-link" href="#dashboard-main">
+        Skip to main content
+    </a>
+
+    <!-- ═══ System Status Alert (Offline / Degraded) ══════════════════════ -->
+    <div
+        id="system-alert"
+        class="system-alert"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        hidden
+    >
+        <div class="system-alert__inner">
+            <span class="system-alert__icon" aria-hidden="true">⚠</span>
+            <div class="system-alert__content">
+                <strong id="system-alert-title">Network Connection Lost</strong>
+                <p id="system-alert-message">
+                    Stadium network is unavailable. Incident reporting and fan
+                    assistant services are operating in degraded mode. Reports
+                    will be queued and submitted when connectivity is restored.
+                </p>
+            </div>
+            <button
+                id="system-alert-dismiss"
+                class="system-alert__dismiss"
+                aria-label="Dismiss alert"
+                type="button"
+            >✕</button>
+        </div>
+    </div>
+
+    <!-- ═══ Header ════════════════════════════════════════════════════════ -->
+    <header id="app-header" role="banner">
+        <div class="header-inner">
+            <div class="brand">
+                <span class="brand-icon" aria-hidden="true">⚽</span>
+                <div>
+                    <h1>Smart Stadium Ops</h1>
+                    <p class="subtitle">FIFA World Cup 2026</p>
+                </div>
+            </div>
+            <nav aria-label="System status" class="header-nav">
+                <div
+                    id="health-badge"
+                    class="badge badge--loading"
+                    role="status"
+                    aria-live="polite"
+                    aria-label="System status: connecting"
+                >Connecting…</div>
+                <div
+                    id="connection-indicator"
+                    class="connection-dot connection-dot--unknown"
+                    role="status"
+                    aria-live="polite"
+                    aria-label="Network status: checking"
+                    title="Network status"
+                ></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ═══ Navigation Tabs ═══════════════════════════════════════════════ -->
+    <nav id="tab-nav" aria-label="Dashboard sections" role="navigation">
+        <div class="tab-bar">
+            <button
+                id="tab-incidents"
+                class="tab-btn tab-btn--active"
+                role="tab"
+                aria-selected="true"
+                aria-controls="panel-incidents"
+                type="button"
+            >
+                <span aria-hidden="true">🚨</span> Incident Command
+            </button>
+            <button
+                id="tab-fan"
+                class="tab-btn"
+                role="tab"
+                aria-selected="false"
+                aria-controls="panel-fan"
+                type="button"
+            >
+                <span aria-hidden="true">💬</span> Fan Assistant
+            </button>
+            <button
+                id="tab-logs"
+                class="tab-btn"
+                role="tab"
+                aria-selected="false"
+                aria-controls="panel-logs"
+                type="button"
+            >
+                <span aria-hidden="true">📋</span> Live Incident Log
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═══ Main Dashboard ════════════════════════════════════════════════ -->
+    <main id="dashboard-main" role="main">
+
+        <!-- ── Panel 1: Incident Command ─────────────────────────────────── -->
+        <section
+            id="panel-incidents"
+            class="panel panel--active"
+            role="tabpanel"
+            aria-labelledby="tab-incidents"
+        >
+            <div class="panel-grid">
+
+                <!-- Report Form -->
+                <article class="card" aria-labelledby="incident-form-title">
+                    <div class="card__header">
+                        <h2 id="incident-form-title">Report Incident</h2>
+                        <span class="card__badge" aria-hidden="true">AI Triage</span>
+                    </div>
+                    <form id="incident-form" autocomplete="off" novalidate>
+                        <div class="form-group">
+                            <label for="inc-zone">Zone / Sector</label>
+                            <input
+                                id="inc-zone"
+                                type="text"
+                                placeholder="e.g. North Stand Gate 4"
+                                required
+                                aria-required="true"
+                                maxlength="100"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inc-severity">Severity Level</label>
+                            <select id="inc-severity" aria-required="true">
+                                <option value="CRITICAL">🔴 CRITICAL — Immediate danger</option>
+                                <option value="HIGH">🟠 HIGH — Potential escalation</option>
+                                <option value="MEDIUM" selected>🟡 MEDIUM — Disruption</option>
+                                <option value="LOW">🟢 LOW — Informational</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inc-desc">Incident Description</label>
+                            <textarea
+                                id="inc-desc"
+                                rows="4"
+                                placeholder="Describe the incident in detail…"
+                                required
+                                aria-required="true"
+                                maxlength="4000"
+                            ></textarea>
+                            <span class="char-count" id="inc-desc-count" aria-live="polite">0 / 4000</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inc-reporter">Reporter ID <span class="optional">(optional)</span></label>
+                            <input
+                                id="inc-reporter"
+                                type="text"
+                                placeholder="e.g. Steward-B7"
+                                maxlength="120"
+                            />
+                        </div>
+
+                        <button id="inc-submit" type="submit" class="btn btn--primary">
+                            <span class="btn__text">Submit &amp; Triage</span>
+                            <span class="btn__spinner" aria-hidden="true" hidden></span>
+                        </button>
+                    </form>
+                </article>
+
+                <!-- AI Response -->
+                <article class="card" aria-labelledby="incident-response-title">
+                    <div class="card__header">
+                        <h2 id="incident-response-title">AI Task Assignment</h2>
+                    </div>
+                    <div
+                        id="incident-result"
+                        class="result-region"
+                        role="region"
+                        aria-live="polite"
+                        aria-label="Incident processing result"
+                    >
+                        <div class="empty-state">
+                            <span class="empty-state__icon" aria-hidden="true">📡</span>
+                            <p>Submit an incident to receive an AI-generated task assignment and response plan.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ── Panel 2: Fan Assistant ────────────────────────────────────── -->
+        <section
+            id="panel-fan"
+            class="panel"
+            role="tabpanel"
+            aria-labelledby="tab-fan"
+            hidden
+        >
+            <div class="panel-grid">
+
+                <!-- Query Form -->
+                <article class="card" aria-labelledby="fan-form-title">
+                    <div class="card__header">
+                        <h2 id="fan-form-title">Ask the Stadium Assistant</h2>
+                        <span class="card__badge" aria-hidden="true">Multilingual</span>
+                    </div>
+                    <form id="fan-form" autocomplete="off" novalidate>
+                        <div class="form-group">
+                            <label for="fan-lang">Your Language</label>
+                            <select id="fan-lang">
+                                <option value="en">🇬🇧 English</option>
+                                <option value="es">🇪🇸 Español</option>
+                                <option value="fr">🇫🇷 Français</option>
+                                <option value="ar">🇸🇦 العربية</option>
+                                <option value="pt">🇧🇷 Português</option>
+                                <option value="de">🇩🇪 Deutsch</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fan-match">Match ID <span class="optional">(optional)</span></label>
+                            <input
+                                id="fan-match"
+                                type="text"
+                                placeholder="e.g. WC2026-QF3"
+                                maxlength="50"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fan-msg">Your Question</label>
+                            <textarea
+                                id="fan-msg"
+                                rows="4"
+                                placeholder="Ask about wayfinding, food, transport, accessibility…"
+                                required
+                                aria-required="true"
+                                maxlength="1000"
+                            ></textarea>
+                            <span class="char-count" id="fan-msg-count" aria-live="polite">0 / 1000</span>
+                        </div>
+
+                        <button id="fan-submit" type="submit" class="btn btn--accent">
+                            <span class="btn__text">Ask Assistant</span>
+                            <span class="btn__spinner" aria-hidden="true" hidden></span>
+                        </button>
+                    </form>
+                </article>
+
+                <!-- AI Response -->
+                <article class="card" aria-labelledby="fan-response-title">
+                    <div class="card__header">
+                        <h2 id="fan-response-title">Assistant Response</h2>
+                    </div>
+                    <div
+                        id="fan-result"
+                        class="result-region"
+                        role="region"
+                        aria-live="polite"
+                        aria-label="Fan assistant response"
+                    >
+                        <div class="empty-state">
+                            <span class="empty-state__icon" aria-hidden="true">🌍</span>
+                            <p>Ask a question in any supported language and the AI assistant will respond with localized guidance.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ── Panel 3: Live Incident Log ────────────────────────────────── -->
+        <section
+            id="panel-logs"
+            class="panel"
+            role="tabpanel"
+            aria-labelledby="tab-logs"
+            hidden
+        >
+            <article class="card card--full-width">
+                <div class="card__header">
+                    <h2 id="log-title">Real-Time Incident Feed</h2>
+                    <span id="log-count" class="card__badge">0 events</span>
+                </div>
+                <div
+                    id="incident-log"
+                    class="incident-log"
+                    role="log"
+                    aria-live="assertive"
+                    aria-label="Live incident log — new incidents are announced automatically"
+                    aria-relevant="additions"
+                >
+                    <div class="empty-state">
+                        <span class="empty-state__icon" aria-hidden="true">📋</span>
+                        <p>No incidents logged yet. Submitted incidents will appear here in real time.</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+    </main>
+
+    <!-- ═══ Footer ════════════════════════════════════════════════════════ -->
+    <footer id="app-footer" role="contentinfo">
+        <p>Smart Stadium Ops &copy; 2026 — FIFA World Cup &mdash; Zero-dependency accessible frontend</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
