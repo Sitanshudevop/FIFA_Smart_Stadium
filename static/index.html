@@ -3,6 +3,14 @@
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JP71Q6L2VM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JP71Q6L2VM');
+</script>
 <title>FIFA 2026 Smart Stadium Command</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -1329,6 +1337,13 @@ Awaiting simulation parameters...
                 e.preventDefault();
                 const inputValue = simInput.value || "Simulated Crisis Event";
                 
+                if (typeof window.gtag !== 'undefined') {
+                    window.gtag('event', 'crisis_simulation_run', {
+                        'simulation_type': inputValue
+                    });
+                }
+
+                
                 const originalText = btnSimulate.innerHTML;
                 btnSimulate.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> PROCESSING...`;
                 
@@ -1369,6 +1384,13 @@ Awaiting simulation parameters...
                 if (!opsState.activeZone || !opsState.activeResource) {
                     alert("Please select a Resource and a Zone first.");
                     return;
+                }
+                
+                if (typeof window.gtag !== 'undefined') {
+                    window.gtag('event', 'tactical_team_dispatched', {
+                        'zone_targeted': opsState.activeZone,
+                        'resource_type': opsState.activeResource
+                    });
                 }
                 
                 const originalText = btnMatch.innerHTML;
