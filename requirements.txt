@@ -2,3 +2,8 @@ fastapi
 uvicorn
 pydantic
 google-cloud-texttospeech
+slowapi
+google-genai
+async-lru
+python-dotenv
+pydantic-settings
