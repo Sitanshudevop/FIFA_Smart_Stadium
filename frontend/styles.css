@@ -822,3 +822,64 @@ select option {
     outline: 0.1875rem solid var(--accent);
     outline-offset: 0.125rem;
 }
+
+/* ── Hackathon UI/UX Strict Mobile & Tablet Breakpoints ────────────────────── */
+
+/* Tablet Breakpoint */
+@media (max-width: 1024px) {
+    body, #dashboard-main, .panel, .card, .grid {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Ensure side-by-side components like Venue Map and Knockout Stage stack on smaller screens */
+    .grid.md\:grid-cols-3, .panel-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+    
+    #venue-map {
+        min-height: 300px;
+        width: 100% !important;
+    }
+}
+
+/* Mobile Breakpoint */
+@media (max-width: 768px) {
+    /* Prevent Horizontal Scrolling Global Protection */
+    html, body {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+    
+    *, *::before, *::after {
+        box-sizing: border-box !important;
+    }
+    
+    #dashboard-main, .panel, .card, .container {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Stacking for Main Layout Containers */
+    .grid.md\:grid-cols-3, .panel-grid, .flex-row {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* Accessibility: Minimum Touch Targets */
+    button, input, select, textarea, .tab-btn, .btn, a {
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+
+    /* Scrollable Containers (Tournament Bracket / Tables) */
+    #bracket-container, .bracket-wrapper, .custom-scrollbar, .overflow-x-auto {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        max-width: 100% !important;
+        display: flex !important;
+        flex-direction: row !important; /* Override stacking to maintain bracket flow */
+    }
+}
