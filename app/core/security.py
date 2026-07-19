@@ -5,6 +5,8 @@ def sanitize_user_input(text: str) -> str:
     text = text.replace('\\', '')
     # Normalize whitespace
     text = re.sub(r'\s+', ' ', text).strip()
+    # Truncate aggressively to prevent buffer overflow/prompt bomb attacks
+    text = text[:500]
     
     # Neutralize injection payloads
     injection_patterns = [

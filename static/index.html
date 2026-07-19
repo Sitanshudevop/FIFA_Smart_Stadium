@@ -4,18 +4,52 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JP71Q6L2VM"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JP71Q6L2VM">
+        window.addEventListener('beforeunload', () => {
+            if (window.telemetrySyncIntervalId) clearInterval(window.telemetrySyncIntervalId);
+            if (window.opsMetricsIntervalId) clearInterval(window.opsMetricsIntervalId);
+            if (window.costTrackerIntervalId) clearInterval(window.costTrackerIntervalId);
+            if (window.incidentFeedIntervalId) clearInterval(window.incidentFeedIntervalId);
+        });
+    
+    </script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-JP71Q6L2VM');
-</script>
-<title>FIFA 2026 Smart Stadium Command</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+        window.addEventListener('beforeunload', () => {
+            if (window.telemetrySyncIntervalId) clearInterval(window.telemetrySyncIntervalId);
+            if (window.opsMetricsIntervalId) clearInterval(window.opsMetricsIntervalId);
+            if (window.costTrackerIntervalId) clearInterval(window.costTrackerIntervalId);
+            if (window.incidentFeedIntervalId) clearInterval(window.incidentFeedIntervalId);
+        });
+    
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://accounts.google.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://fifa-smart-stadium.firebaseapp.com https://fifa-smart-stadium.web.app https://accounts.google.com; img-src 'self' data: https:;">
+    <title>FIFA 2026 Smart Stadium Command</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
+        window.addEventListener('beforeunload', () => {
+            if (window.telemetrySyncIntervalId) clearInterval(window.telemetrySyncIntervalId);
+            if (window.opsMetricsIntervalId) clearInterval(window.opsMetricsIntervalId);
+            if (window.costTrackerIntervalId) clearInterval(window.costTrackerIntervalId);
+            if (window.incidentFeedIntervalId) clearInterval(window.incidentFeedIntervalId);
+        });
+    
+    </script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+        window.addEventListener('beforeunload', () => {
+            if (window.telemetrySyncIntervalId) clearInterval(window.telemetrySyncIntervalId);
+            if (window.opsMetricsIntervalId) clearInterval(window.opsMetricsIntervalId);
+            if (window.costTrackerIntervalId) clearInterval(window.costTrackerIntervalId);
+            if (window.incidentFeedIntervalId) clearInterval(window.incidentFeedIntervalId);
+        });
+    
+    </script>
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -149,8 +183,24 @@
             }
           }
         }
+    
+        window.addEventListener('beforeunload', () => {
+            if (window.telemetrySyncIntervalId) clearInterval(window.telemetrySyncIntervalId);
+            if (window.opsMetricsIntervalId) clearInterval(window.opsMetricsIntervalId);
+            if (window.costTrackerIntervalId) clearInterval(window.costTrackerIntervalId);
+            if (window.incidentFeedIntervalId) clearInterval(window.incidentFeedIntervalId);
+        });
+    
     </script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://accounts.google.com/gsi/client" async defer>
+        window.addEventListener('beforeunload', () => {
+            if (window.telemetrySyncIntervalId) clearInterval(window.telemetrySyncIntervalId);
+            if (window.opsMetricsIntervalId) clearInterval(window.opsMetricsIntervalId);
+            if (window.costTrackerIntervalId) clearInterval(window.costTrackerIntervalId);
+            if (window.incidentFeedIntervalId) clearInterval(window.incidentFeedIntervalId);
+        });
+    
+    </script>
 </head>
 <body class="bg-background dark:bg-black text-on-surface dark:text-gray-100 min-h-screen font-body-md antialiased selection:bg-primary-fixed selection:text-on-primary-fixed cursor-default">
 <!-- Landing View Overlay -->
@@ -1301,10 +1351,10 @@ Awaiting simulation parameters...
                 if(card.id === 'forecast-banner') return;
                 card.classList.add('cursor-pointer');
                 card.addEventListener('click', (e) => {
-                    if (e.target.closest('button')) return; // ignore button clicks
+                    if (clickEvent.target.closest('button')) return; // ignore button clicks
                     const typeSpan = card.querySelector('.font-label-md.uppercase');
                     if(typeSpan) opsState.activeIncident = typeSpan.innerText;
-                    incidentCards.forEach(c => c.classList.remove('ring-2', 'ring-primary', 'bg-blue-50', 'dark:bg-blue-900/20'));
+                    incidentCards.forEach(cardElement => cardElement.classList.remove('ring-2', 'ring-primary', 'bg-blue-50', 'dark:bg-blue-900/20'));
                     card.classList.add('ring-2', 'ring-primary', 'bg-blue-50', 'dark:bg-blue-900/20');
                 });
             });
@@ -1325,7 +1375,7 @@ Awaiting simulation parameters...
                 row.classList.add('cursor-pointer');
                 row.addEventListener('click', () => {
                     opsState.activeResource = row.cells[0].innerText.trim();
-                    resourceRows.forEach(r => r.classList.remove('bg-blue-100', 'dark:bg-blue-900/40'));
+                    resourceRows.forEach(resourceRow => resourceRow.classList.remove('bg-blue-100', 'dark:bg-blue-900/40'));
                     row.classList.add('bg-blue-100', 'dark:bg-blue-900/40');
                 });
             });
@@ -1333,8 +1383,8 @@ Awaiting simulation parameters...
 
 
             // Simulator Interaction (/api/v1/simulation/whatif)
-            btnSimulate.addEventListener('click', async (e) => {
-                e.preventDefault();
+            btnSimulate.addEventListener('click', async (clickEvent) => {
+                clickEvent.preventDefault();
                 const inputValue = simInput.value || "Simulated Crisis Event";
                 
                 if (typeof window.gtag !== 'undefined') {
@@ -1363,7 +1413,7 @@ Awaiting simulation parameters...
                     opsState.simulatedIncidents = opsState.simulatedIncidents.filter(id => id !== 'Z-D2');
                     renderHeatmap();
                     
-                    const simConf = (Math.random() * (98.9 - 89.0) + 89.0).toFixed(1);
+                    const simulationConfidenceScore = (Math.random() * (98.9 - 89.0) + 89.0).toFixed(1);
                     simViewport.innerHTML = `
 <span class="font-bold text-gray-800 dark:text-gray-100">CRISIS SIMULATION RESULTS</span>
 <hr class="my-2 border-gray-200 dark:border-gray-800">
@@ -1373,7 +1423,7 @@ Awaiting simulation parameters...
 <span class="text-gray-500 dark:text-gray-400 text-sm uppercase tracking-wide">Recommended Mitigations</span>
 <div class="mb-3 text-gray-800 dark:text-gray-200">Mitigation strategy generated for: ${inputValue}</div>
 
-<div class="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-semibold">Confidence: ${simConf}%</div>
+<div class="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-semibold">Confidence: ${simulationConfidenceScore}%</div>
                     `;
                     btnSimulate.innerHTML = originalText;
                 }, 4000);
@@ -1423,7 +1473,7 @@ Awaiting simulation parameters...
                         incident: opsState.activeIncident
                     };
                     const startTime = performance.now();
-                    const res = await fetch(`${API_BASE}/ops/dispatch`, {
+                    const apiResponsePayload = await fetch(`${API_BASE}/ops/dispatch`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
@@ -1448,9 +1498,9 @@ Awaiting simulation parameters...
                     opsState.activeZone = null;
                     opsState.activeResource = null;
                     
-                    document.querySelectorAll('#view-ops-room .space-y-4 > div').forEach(c => c.classList.remove('ring-2', 'ring-primary', 'bg-blue-50', 'dark:bg-blue-900/20'));
-                    document.querySelectorAll('[id^="zone-"]').forEach(z => z.classList.remove('ring-4', 'ring-orange-500', 'border-orange-500'));
-                    document.querySelectorAll('table tbody tr').forEach(r => r.classList.remove('bg-blue-100', 'dark:bg-blue-900/40'));
+                    document.querySelectorAll('#view-ops-room .space-y-4 > div').forEach(cardElement => cardElement.classList.remove('ring-2', 'ring-primary', 'bg-blue-50', 'dark:bg-blue-900/20'));
+                    document.querySelectorAll('[id^="zone-"]').forEach(zoneElement => zoneElement.classList.remove('ring-4', 'ring-orange-500', 'border-orange-500'));
+                    document.querySelectorAll('table tbody tr').forEach(resourceRow => resourceRow.classList.remove('bg-blue-100', 'dark:bg-blue-900/40'));
                     
                     // Trigger Cascading State Cleanups
                     renderHeatmap();
@@ -1477,7 +1527,7 @@ Awaiting simulation parameters...
                         if(statusDot) statusDot.className = "w-2.5 h-2.5 rounded-full bg-gray-400 shadow-sm";
                     }, 5000);
                     
-                } catch (err) {
+                } catch (errorResponse) {
                     alert("Failed to dispatch");
                 } finally {
                     btnMatch.innerHTML = originalText;
@@ -1502,15 +1552,15 @@ Awaiting simulation parameters...
                         textSpan.innerText = 'PLAYING...';
                         btnPlayAudio.disabled = true;
                         
-                        const res = await fetch('/api/v1/tts', {
+                        const apiResponsePayload = await fetch('/api/v1/tts', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ text: textToPlay })
                         });
                         
-                        if (!res.ok) throw new Error("Failed to fetch audio");
+                        if (!apiResponsePayload.ok) throw new Error("Failed to fetch audio");
                         
-                        const blob = await res.blob();
+                        const blob = await apiResponsePayload.blob();
                         const url = URL.createObjectURL(blob);
                         const audio = new Audio(url);
                         
@@ -1528,8 +1578,8 @@ Awaiting simulation parameters...
                         };
                         
                         await audio.play();
-                    } catch (err) {
-                        console.error(err);
+                    } catch (errorResponse) {
+                        console.error(errorResponse);
                         iconSpan.innerText = originalIcon;
                         textSpan.innerText = originalText;
                         btnPlayAudio.disabled = false;
@@ -1580,7 +1630,7 @@ Awaiting simulation parameters...
             
             if (btnProfile && profileMenu) {
                 btnProfile.addEventListener('click', (e) => {
-                    e.stopPropagation();
+                    clickEvent.stopPropagation();
                     const isHidden = profileMenu.classList.contains('hidden');
                     
                     if (isHidden) {
@@ -1599,7 +1649,7 @@ Awaiting simulation parameters...
                 });
 
                 document.addEventListener('click', (e) => {
-                    if (!profileMenu.classList.contains('hidden') && !btnProfile.contains(e.target) && !profileMenu.contains(e.target)) {
+                    if (!profileMenu.classList.contains('hidden') && !btnProfile.contains(clickEvent.target) && !profileMenu.contains(clickEvent.target)) {
                         profileMenu.classList.remove('opacity-100', 'scale-100');
                         profileMenu.classList.add('opacity-0', 'scale-95');
                         setTimeout(() => {
@@ -1641,11 +1691,11 @@ Awaiting simulation parameters...
                 formData.append('file', file);
 
                 try {
-                    const res = await fetch(`${API_BASE}/vision/navigate`, {
+                    const apiResponsePayload = await fetch(`${API_BASE}/vision/navigate`, {
                         method: 'POST',
                         body: formData
                     });
-                    const data = await res.json();
+                    const data = await apiResponsePayload.json();
                     const textOutput = data.screen_reader_text || data.detail || JSON.stringify(data);
                     
                     let badgeHtml = '';
@@ -1670,7 +1720,7 @@ Awaiting simulation parameters...
                         const utterance = new SpeechSynthesisUtterance(data.screen_reader_text);
                         window.speechSynthesis.speak(utterance);
                     }
-                } catch (err) {
+                } catch (errorResponse) {
                     terminalOutput.innerHTML = getHeader() + `<div class="font-sans text-base leading-relaxed text-red-500">Network Error. Unable to process image.</div>`;
                 }
             };
@@ -1679,7 +1729,7 @@ Awaiting simulation parameters...
             dropZone.addEventListener('click', () => fileInput.click());
             
             fileInput.addEventListener('change', (e) => {
-                if (e.target.files.length > 0) handleFileUpload(e.target.files[0]);
+                if (clickEvent.target.files.length > 0) handleFileUpload(clickEvent.target.files[0]);
             });
 
             // Process Incident Buttons
@@ -1707,25 +1757,25 @@ Awaiting simulation parameters...
             // Feature 3: Legible Efficiency (Model Routing Badges) and Fan Assist integration
             const fanChatResponse = chatInput ? chatInput.parentElement.nextElementSibling : null;
             if (chatInput && fanChatResponse) {
-                chatInput.addEventListener('keydown', async (e) => {
-                    if (e.key === 'Enter' && chatInput.value.trim() !== '') {
-                        e.preventDefault();
+                chatInput.addEventListener('keydown', async (clickEvent) => {
+                    if (clickEvent.key === 'Enter' && chatInput.value.trim() !== '') {
+                        clickEvent.preventDefault();
                         const message = chatInput.value.trim();
                         fanChatResponse.innerHTML = `<span class="text-on-surface-variant italic animate-pulse">Processing...</span>`;
                         
                         try {
                             const bypassFetch = window.originalFetch || window.fetch;
-                            const res = await bypassFetch(`${API_BASE}/fan/assist`, {
+                            const apiResponsePayload = await bypassFetch(`${API_BASE}/fan/assist`, {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({ message, language: 'en', simplify_language: false, stadium: window.globalStadiumContext })
                             });
                             
-                            if (res.ok) {
+                            if (apiResponsePayload.ok) {
                                 chatInput.value = '';
                             }
                             
-                            const data = await res.json();
+                            const data = await apiResponsePayload.json();
                             
                             let badgeHtml = '';
                             if (data.model_used && data.latency_ms) {
@@ -1746,7 +1796,7 @@ Awaiting simulation parameters...
                                 <div class="font-sans text-base leading-relaxed text-gray-800 dark:text-gray-100">${data.reply || data.detail || 'Error processing response'}</div>
                                 ${badgeHtml}
                             `;
-                        } catch (err) {
+                        } catch (errorResponse) {
                             fanChatResponse.innerHTML = `<span class="text-red-500 italic">Network Error. Unable to process query.</span>`;
                         }
                     }
@@ -1824,31 +1874,31 @@ Awaiting simulation parameters...
             // Feature 2: Auto Forecasting Fetch Logic
             setTimeout(async () => {
                 try {
-                    const res = await fetch(`${API_BASE}/forecast`);
-                    const data = await res.json();
-                    if (res.ok && data.zone) {
+                    const apiResponsePayload = await fetch(`${API_BASE}/forecast`);
+                    const data = await apiResponsePayload.json();
+                    if (apiResponsePayload.ok && data.zone) {
                         document.getElementById('forecast-banner').classList.remove('hidden');
                         document.getElementById('forecast-zone').textContent = data.zone || 'Unknown Zone';
                         document.getElementById('forecast-time').textContent = data.timestamp ? new Date(data.timestamp).toLocaleTimeString() : '';
                         document.getElementById('forecast-message').textContent = `${data.prediction || ''} → ${data.warning || ''}`;
                         document.getElementById('forecast-action').textContent = `Recommended Action: ${data.action_recommended || ''}`;
                     }
-                } catch(e) { console.error("Forecasting endpoint error", e); }
+                } catch(clickEvent) { console.error("Error:", errorResponse); }
             }, 3000); // Simulate it appearing shortly after load
 
             // Feature: Live Ops Room Telemetry Polling
-            setInterval(async () => {
+            window.opsMetricsIntervalId = setInterval(async () => {
                 const viewOps = document.getElementById('view-ops-room');
                 if (viewOps && !viewOps.classList.contains('hidden')) {
                     try {
-                        const res = await fetch(`${API_BASE}/ops/metrics`);
-                        if (res.ok) {
-                            const data = await res.json();
+                        const apiResponsePayload = await fetch(`${API_BASE}/ops/metrics`);
+                        if (apiResponsePayload.ok) {
+                            const data = await apiResponsePayload.json();
                             document.getElementById('roi-tokens').textContent = data.tokens.toLocaleString();
                             document.getElementById('roi-cost').textContent = '$' + data.cost.toFixed(6);
                             document.getElementById('roi-savings').textContent = '$' + data.saved.toFixed(2) + ' Saved';
                         }
-                    } catch(e) { console.error("Metrics polling error", e); }
+                    } catch(clickEvent) { console.error("Error:", errorResponse); }
                 }
             }, 3000);
 
@@ -1877,14 +1927,14 @@ Awaiting simulation parameters...
 
 
             // Feature 1: AI Cost Tracker Polling
-            setInterval(async () => {
+            window.costTrackerIntervalId = setInterval(async () => {
                 try {
-                    const res = await fetch(`${API_BASE}/cost-tracker`);
-                    const data = await res.json();
+                    const apiResponsePayload = await fetch(`${API_BASE}/cost-tracker`);
+                    const data = await apiResponsePayload.json();
                     document.getElementById('roi-tokens').textContent = data.total_tokens.toLocaleString();
                     document.getElementById('roi-cost').textContent = `$${data.actual_cost_usd.toFixed(6)}`;
                     document.getElementById('roi-savings').textContent = `$${data.savings_usd.toFixed(2)} Saved`;
-                } catch(e) { }
+                } catch(clickEvent) { }
             }, 3000);
 
             // Feature 2: Post-Mortem Generator Logic
@@ -1903,14 +1953,14 @@ Awaiting simulation parameters...
 
                     try {
 
-                        const res = await fetch(`${API_BASE}/generate-post-mortem`, {
+                        const apiResponsePayload = await fetch(`${API_BASE}/generate-post-mortem`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
                                 logs: window.incidentLogStack || [{ event: "Simulation triggered", time: new Date().toISOString() }]
                             })
                         });
-                        const data = await res.json();
+                        const data = await apiResponsePayload.json();
                         // Basic Markdown parser for the report display
                         if (data && data.markdown_report) {
                             let html = data.markdown_report
@@ -1933,7 +1983,7 @@ Awaiting simulation parameters...
                                 </ul>
                             `;
                         }
-                    } catch(e) {
+                    } catch(clickEvent) {
                         pmContent.innerHTML = `<div class="text-red-500 text-center p-8">Failed to generate report: ${e.message}</div>`;
                     }
                 });
@@ -1970,9 +2020,9 @@ Awaiting simulation parameters...
             // The previous logic for forecast banner was at line 1115. I'll dynamically find the zone and pulse it.
             setTimeout(async () => {
                 try {
-                    const res = await fetch(`${API_BASE}/forecast`);
-                    const data = await res.json();
-                    if (res.ok && data.zone) {
+                    const apiResponsePayload = await fetch(`${API_BASE}/forecast`);
+                    const data = await apiResponsePayload.json();
+                    if (apiResponsePayload.ok && data.zone) {
                         document.getElementById('forecast-banner').classList.remove('hidden');
                         document.getElementById('forecast-zone').textContent = data.zone || 'Unknown Zone';
                         document.getElementById('forecast-time').textContent = data.timestamp ? new Date(data.timestamp).toLocaleTimeString() : '';
@@ -1981,8 +2031,7 @@ Awaiting simulation parameters...
                     }
 
                     // Update Heatmap UI dynamically
-                    // e.g. "Z-B2" -> "zone-B4"
-                    const zoneId = "zone-" + data.zone.replace("Zone ", "");
+                                        const zoneId = "zone-" + data.zone.replace("Zone ", "");
                     const targetZone = document.getElementById(zoneId);
                     if (targetZone) {
                         targetZone.className = "bg-orange-50 dark:bg-orange-900/40 border-2 border-orange-500 dark:border-orange-600 rounded-xl min-h-[90px] h-auto p-3 flex flex-col items-center justify-center text-center shadow-[0_0_20px_rgba(249,115,22,0.4)] animate-pulse transition-all duration-300 cursor-pointer relative";
@@ -1991,7 +2040,7 @@ Awaiting simulation parameters...
                             <span class="text-[11px] uppercase font-bold text-orange-600 dark:text-orange-400 mt-1 break-words tracking-widest relative z-10">Forecast Alert</span>
                         `;
                     }
-                } catch(e) { console.error("Forecasting endpoint error", e); }
+                } catch(clickEvent) { console.error("Error:", errorResponse); }
             }, 3000);
 
             // Language Dropdown Toggle Logic
@@ -2002,7 +2051,7 @@ Awaiting simulation parameters...
                 
                 if (btn && menu) {
                     btn.addEventListener('click', (e) => {
-                        e.stopPropagation();
+                        clickEvent.stopPropagation();
                         const isHidden = menu.classList.contains('hidden');
                         
                         if (isHidden) {
@@ -2023,7 +2072,7 @@ Awaiting simulation parameters...
                     });
 
                     document.addEventListener('click', (e) => {
-                        if (!menu.classList.contains('hidden') && !btn.contains(e.target) && !menu.contains(e.target)) {
+                        if (!menu.classList.contains('hidden') && !btn.contains(clickEvent.target) && !menu.contains(clickEvent.target)) {
                             menu.classList.remove('opacity-100', 'scale-100');
                             menu.classList.add('opacity-0', 'scale-95');
                             caret.style.transform = 'rotate(0deg)';
@@ -2197,17 +2246,17 @@ Awaiting simulation parameters...
             
             if (stadiumSelector && btnDirections) {
                 stadiumSelector.addEventListener('change', (e) => {
-                    window.setSelectedStadium(e.target.value);
+                    window.setSelectedStadium(clickEvent.target.value);
                 });
             }
 
             // Init Bracket & Map
             fetch('/api/v1/config')
-                .then(res => res.json())
+                .then(apiResponsePayload => apiResponsePayload.json())
                 .then(data => {
                     initMap();
                 })
-                .catch(err => console.error("Error fetching config:", err));
+                .catch(errorResponse => console.error("Error fetching config:", errorResponse));
 
             window.initMap = function() {
                 const mapEl = document.getElementById("venue-map");
@@ -2274,7 +2323,7 @@ Awaiting simulation parameters...
                         if (window.setSelectedStadium) window.setSelectedStadium(stadium.name);
                     });
                     
-                    marker.on("mouseover", function(e) {
+                    marker.on("mouseover", function(clickEvent) {
                         this.openPopup();
                     });
                 });
@@ -2282,7 +2331,7 @@ Awaiting simulation parameters...
 
             // Fetch Live Bracket
             fetch('/api/v1/live-bracket')
-                .then(res => res.json())
+                .then(apiResponsePayload => apiResponsePayload.json())
                 .then(data => {
                     const container = document.getElementById('bracket-container');
                     if(container && data.rounds) {
@@ -2305,7 +2354,7 @@ Awaiting simulation parameters...
                         container.innerHTML = html;
                     }
                 })
-                .catch(err => console.error("Error fetching bracket:", err));
+                .catch(errorResponse => console.error("Error fetching bracket:", errorResponse));
 
             const translatePage = (langCode) => {
                 const dict = translations[langCode] || translations['en'];
@@ -2323,7 +2372,7 @@ Awaiting simulation parameters...
 
             document.querySelectorAll('.btn-lang-option').forEach(btn => {
                 btn.addEventListener('click', (e) => {
-                    const langCode = e.target.getAttribute('data-lang');
+                    const langCode = clickEvent.target.getAttribute('data-lang');
                     translatePage(langCode);
                     
                     // Close the dropdown after selection
@@ -2354,12 +2403,12 @@ Awaiting simulation parameters...
         // Google Auth Logic
         window.handleCredentialResponse = async (response) => {
             try {
-                const res = await fetch('/api/v1/auth/google', {
+                const apiResponsePayload = await fetch('/api/v1/auth/google', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ credential: response.credential })
                 });
-                const data = await res.json();
+                const data = await apiResponsePayload.json();
                 if (data.token && data.user) {
                     localStorage.setItem('auth_token', data.token);
                     localStorage.setItem('auth_user', JSON.stringify(data.user));
@@ -2378,7 +2427,7 @@ Awaiting simulation parameters...
                     console.error('Auth failed', data);
                 }
             } catch (e) {
-                console.error("Auth callback error", e);
+                console.error("Error:", errorResponse);
             }
         };
 
@@ -2420,7 +2469,15 @@ Awaiting simulation parameters...
         if (savedUser) {
             try {
                 updateAuthUI(JSON.parse(savedUser));
-            } catch(e) {}
+            } catch(clickEvent) {}
         }
+    
+        window.addEventListener('beforeunload', () => {
+            if (window.telemetrySyncIntervalId) clearInterval(window.telemetrySyncIntervalId);
+            if (window.opsMetricsIntervalId) clearInterval(window.opsMetricsIntervalId);
+            if (window.costTrackerIntervalId) clearInterval(window.costTrackerIntervalId);
+            if (window.incidentFeedIntervalId) clearInterval(window.incidentFeedIntervalId);
+        });
+    
     </script>
 </body></html>
