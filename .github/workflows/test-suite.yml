@@ -26,6 +26,9 @@ jobs:
         pip install pytest pytest-cov httpx
         
     - name: Run Pytest with Coverage
+      env:
+        GEMINI_API_KEY: "AIzaFAKE_test_key_1234567890"
+        ADMIN_TOKEN: "fake_admin_token"
       run: |
         python -m pytest tests/ --cov=app --cov-report=xml --cov-report=term
         
