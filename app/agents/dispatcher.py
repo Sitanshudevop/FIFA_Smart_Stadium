@@ -18,7 +18,7 @@ async def dispatch_incident(req: DispatchRequest):
     prompt = f"Assign a volunteer to handle this incident: {req.incident}"
     
     # Send the initial request providing the tool
-    response = client.models.generate_content(
+    response = await client.aio.models.generate_content(
         model="gemini-3.5-flash",
         contents=[prompt],
         config=types.GenerateContentConfig(
@@ -43,7 +43,7 @@ async def dispatch_incident(req: DispatchRequest):
             )
             
             # Final resolution with schema enforcement
-            final_res = client.models.generate_content(
+            final_res = await client.aio.models.generate_content(
                 model="gemini-3.5-flash",
                 contents=contents,
                 config=types.GenerateContentConfig(
@@ -54,7 +54,7 @@ async def dispatch_incident(req: DispatchRequest):
             return final_res.parsed
             
     # If no tool was called, still attempt to return structured response
-    final_res = client.models.generate_content(
+    final_res = await client.aio.models.generate_content(
         model="gemini-3.5-flash",
         contents=[prompt],
         config=types.GenerateContentConfig(

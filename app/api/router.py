@@ -14,6 +14,7 @@ from google import genai
 from google.oauth2 import service_account
 
 from app.models.schemas import FanRequest, APIResponse
+from async_lru import alru_cache
 from app.core.security import sanitize_user_input
 from app.core.telemetry import log_metric, get_total_tokens
 from app.core.config import settings
@@ -29,6 +30,30 @@ from app.api.auth import router as auth_router
 logger = logging.getLogger("fifa_app")
 
 api_router = APIRouter()
+
+@alru_cache(maxsize=128)
+async def _cached_genai_call(prompt: str, timeout: float = 60.0) -> dict:
+    if settings.GEMINI_API_KEY:
+        client = genai.Client(api_key=settings.GEMINI_API_KEY)
+    elif settings.GOOGLE_CLOUD_CREDENTIALS:
+        creds = service_account.Credentials.from_service_account_file(
+            settings.GOOGLE_CLOUD_CREDENTIALS,
+            scopes=['https://www.googleapis.com/auth/cloud-platform']
+        )
+        client = genai.Client(vertexai=True, project=creds.project_id, location="us-central1", credentials=creds)
+    else:
+        client = genai.Client()
+    
+    res = await asyncio.wait_for(client.aio.models.generate_content(
+        model="gemini-3.5-flash",
+        contents=[prompt]
+    ), timeout=timeout)
+    
+    tokens = 0
+    if res.usage_metadata:
+        tokens = res.usage_metadata.prompt_token_count + res.usage_metadata.candidates_token_count
+        
+    return {"text": res.text, "tokens": tokens}
 
 class OrderDeliveryRequest(BaseModel):
     """Payload schema for fan order delivery."""
@@ -81,22 +106,22 @@ async def handle_fan_query(request: Request, payload: FanRequest) -> APIResponse
         else:
             genai_client = genai.Client()
         
-        prompt_instruction = f"Respond to this fan: {clean_query_string}"
+        prompt_instruction = f"Respond to this fan: {clean_query_string} at {payload.location_coordinates}"
         
-        ai_response_payload = await asyncio.wait_for(genai_client.aio.models.generate_content(
-            model="gemini-3.5-flash",
-            contents=[prompt_instruction]
-        ), timeout=4.0)
+        hits_before = _cached_genai_call.cache_info().hits
+        ai_response = await _cached_genai_call(prompt_instruction, 4.0)
+        is_hit = _cached_genai_call.cache_info().hits > hits_before
         
-        if ai_response_payload.usage_metadata:
-            total_token_count = ai_response_payload.usage_metadata.prompt_token_count + ai_response_payload.usage_metadata.candidates_token_count
+        total_token_count = ai_response["tokens"]
             
         latency_milliseconds = (time.perf_counter() - start_time_counter) * 1000
-        log_metric(endpoint="/fan/query", latency_ms=latency_milliseconds, tokens=total_token_count, flagged=is_flagged_input)
+        
+        if not is_hit:
+            log_metric(endpoint="/fan/query", latency_ms=latency_milliseconds, tokens=total_token_count, flagged=is_flagged_input)
         
         return APIResponse(
             status="success",
-            message=ai_response_payload.text,
+            message=ai_response["text"],
             data={"query": clean_query_string, "language": payload.language}
         )
         
@@ -275,24 +300,24 @@ async def handle_fan_assist(request: Request, payload: FanAssistRequest) -> dict
             f"Fan query: {clean_message_string}"
         )
 
-        ai_response_payload = await asyncio.wait_for(genai_client.aio.models.generate_content(
-            model="gemini-3.5-flash",
-            contents=[system_prompt_instruction]
-        ), timeout=60.0)
+        hits_before = _cached_genai_call.cache_info().hits
+        ai_response = await _cached_genai_call(system_prompt_instruction, 60.0)
+        is_hit = _cached_genai_call.cache_info().hits > hits_before
 
-        if ai_response_payload.usage_metadata:
-            total_token_count = ai_response_payload.usage_metadata.prompt_token_count + ai_response_payload.usage_metadata.candidates_token_count
+        total_token_count = ai_response["tokens"]
 
         latency_milliseconds = round((time.perf_counter() - start_time_counter) * 1000)
-        log_metric(endpoint="/fan/assist", latency_ms=latency_milliseconds, tokens=total_token_count, flagged=is_flagged_input)
+        
+        if not is_hit:
+            log_metric(endpoint="/fan/assist", latency_ms=latency_milliseconds, tokens=total_token_count, flagged=is_flagged_input)
 
         return {
-            "reply": ai_response_payload.text,
+            "reply": ai_response["text"],
             "model_used": "gemini-3.5-flash",
             "latency_ms": latency_milliseconds,
             "detected_language": payload.language,
-            "cache_hit": False,
-            "screen_reader_text": ai_response_payload.text
+            "cache_hit": is_hit,
+            "screen_reader_text": ai_response["text"]
         }
 
     except asyncio.TimeoutError:

@@ -208,7 +208,7 @@
     <div class="absolute top-8 right-8 flex items-center gap-4">
         <!-- Language Selector Dropdown for Landing -->
         <div class="relative inline-block text-left" id="lang-selector-landing-container">
-            <button id="btn-lang-selector-landing" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors cursor-pointer font-label-md font-bold uppercase border border-outline-variant/30 rounded-lg px-3 py-1.5 hover:bg-surface-container-low shadow-sm bg-white dark:bg-zinc-900">
+            <button id="btn-lang-selector-landing" aria-label="Language Selector" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors cursor-pointer font-label-md font-bold uppercase border border-outline-variant/30 rounded-lg px-3 py-1.5 hover:bg-surface-container-low shadow-sm bg-white dark:bg-zinc-900">
                 <span class="material-symbols-outlined text-[20px]">language</span>
                 <span class="hidden sm:inline">Languages</span>
                 <span class="text-[12px] transition-transform duration-200" id="lang-caret-landing">▼</span>
@@ -223,7 +223,7 @@
                 </div>
             </div>
         </div>
-        <button id="btn-theme-landing" class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer text-[32px]">dark_mode</button>
+        <button id="btn-theme-landing" aria-label="Toggle Theme" class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer text-[32px]">dark_mode</button>
     </div>
     <div class="max-w-5xl px-8 text-center">
         <span class="material-symbols-outlined text-primary text-[72px] mb-6 drop-shadow-md" data-icon="stadium" data-weight="fill" style="font-variation-settings: 'FILL' 1;">stadium</span>
@@ -265,7 +265,7 @@
 <nav class="flex justify-between items-center w-full px-6 py-4 bg-background dark:bg-black border-b border-outline-variant dark:border-zinc-800 sticky top-0 z-[9999]">
 <!-- Brand -->
 <div class="flex items-center gap-3">
-<button id="btn-back-home" class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer mr-2 text-[28px]" title="Back to Landing Page">arrow_back</button>
+<button id="btn-back-home" aria-label="Back to Landing Page" class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer mr-2 text-[28px]" title="Back to Landing Page">arrow_back</button>
 <span class="material-symbols-outlined text-primary text-[32px]" data-icon="stadium" data-weight="fill" style="font-variation-settings: 'FILL' 1;">stadium</span>
 <span class="font-headline-md text-headline-md font-bold text-primary uppercase tracking-tight">FIFA 2026 COMMAND</span>
 </div>
@@ -289,7 +289,7 @@
 </div>
 <!-- Language Selector Dropdown -->
 <div class="relative inline-block text-left" id="lang-selector-container">
-    <button id="btn-lang-selector" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors cursor-pointer font-label-md font-bold uppercase border border-outline-variant/30 rounded-lg px-3 py-1.5 hover:bg-surface-container-low shadow-sm bg-white dark:bg-zinc-900">
+    <button id="btn-lang-selector" aria-label="Language Selector" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors cursor-pointer font-label-md font-bold uppercase border border-outline-variant/30 rounded-lg px-3 py-1.5 hover:bg-surface-container-low shadow-sm bg-white dark:bg-zinc-900">
         <span class="material-symbols-outlined text-[20px]">language</span>
         <span class="hidden sm:inline">Languages</span>
         <span class="text-[12px] transition-transform duration-200" id="lang-caret">▼</span>
@@ -305,7 +305,7 @@
     </div>
 </div>
 
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer" data-icon="dark_mode" id="btn-theme">dark_mode</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer" aria-label="Toggle Theme" data-icon="dark_mode" id="btn-theme">dark_mode</button>
 <!-- Profile Dropdown -->
 <div class="relative inline-flex items-center gap-4" id="auth-container">
     <div id="g_id_onload"
@@ -318,13 +318,13 @@
     <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="outline" data-text="signin_with" data-size="large" data-logo_alignment="left" id="google-signin-btn"></div>
     
     <div class="relative inline-block text-left hidden" id="profile-container">
-        <button class="flex items-center gap-2 hover:opacity-80 transition-opacity cursor-pointer focus:outline-none" id="btn-profile">
-            <img src="" alt="Profile" id="nav-user-avatar" class="w-8 h-8 rounded-full border border-outline-variant object-cover">
+        <button class="flex items-center gap-2 hover:opacity-80 transition-opacity cursor-pointer focus:outline-none" aria-label="User Profile Menu" id="btn-profile">
+            <img src="" alt="" id="nav-user-avatar" class="w-8 h-8 rounded-full border border-outline-variant object-cover">
         </button>
         <div id="profile-dropdown-menu" class="absolute right-0 mt-2 w-64 rounded-xl shadow-xl bg-white dark:bg-zinc-900 ring-1 ring-black ring-opacity-5 hidden z-[100] transition-opacity opacity-0 transform scale-95 border border-outline-variant/50 origin-top-right overflow-hidden">
             <div class="p-4 border-b border-gray-100 dark:border-zinc-800 flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold text-lg overflow-hidden" id="dropdown-avatar-container">
-                    <img src="" id="dropdown-avatar-img" class="w-full h-full object-cover hidden">
+                    <img src="" alt="" id="dropdown-avatar-img" class="w-full h-full object-cover hidden">
                     <span id="dropdown-avatar-initials">SA</span>
                 </div>
                 <div class="overflow-hidden">
@@ -441,11 +441,11 @@
 <span class="material-symbols-outlined absolute left-3 top-3 text-outline">search</span>
 <input class="w-full bg-background dark:bg-zinc-800 border border-outline-variant rounded-lg py-3 pl-10 pr-4 font-body-md text-body-md text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow placeholder:text-outline" id="chat-input" placeholder="Ask for directions, amenities, or schedule..." data-i18n="fp_placeholder" type="text"/>
 </div>
-<div class="bg-surface-container-low border border-surface-dim rounded-lg p-6 min-h-[160px] font-body-md text-body-md text-on-surface relative">
+<div class="bg-surface-container-low border border-surface-dim rounded-lg p-6 min-h-[160px] font-body-md text-body-md text-on-surface relative" aria-live="polite" aria-atomic="true">
 <span class="text-on-surface-variant italic">Assistant response will appear here...</span>
 <!-- Generative Image Placeholder embedded in UI -->
 <div class="absolute bottom-4 right-4 w-16 h-16 rounded overflow-hidden border border-outline-variant/30 opacity-50 grayscale mix-blend-multiply">
-<img class="w-full h-full object-cover" data-alt="A highly abstract, minimalist 3D rendering of a generic soccer stadium viewed from above, rendered in a sterile, corporate light-mode aesthetic. The stadium uses geometric shapes in pure white and light gray, with subtle primary blue accents on the pitch area. High-key studio lighting casts soft shadows, conveying a sense of enterprise data visualization rather than a realistic photograph. The image feels precise, structural, and clean." src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img class="w-full h-full object-cover" alt="Decorative abstract representation of a soccer stadium" data-alt="A highly abstract, minimalist 3D rendering of a generic soccer stadium viewed from above, rendered in a sterile, corporate light-mode aesthetic. The stadium uses geometric shapes in pure white and light gray, with subtle primary blue accents on the pitch area. High-key studio lighting casts soft shadows, conveying a sense of enterprise data visualization rather than a realistic photograph. The image feels precise, structural, and clean." src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
 </div>
 </div>
 </div>
@@ -506,7 +506,7 @@
 <span class="material-symbols-outlined text-secondary">view_in_ar</span>
 <h2 class="font-headline-md text-headline-md" data-i18n="fp_vision">Vision-Based Guide</h2>
 </div>
-<div class="border-2 border-dashed border-outline-variant hover:border-secondary bg-surface-container-low/50 rounded-xl p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-colors group mb-6" id="drop-zone">
+<div class="border-2 border-dashed border-outline-variant hover:border-secondary bg-surface-container-low/50 rounded-xl p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-colors group mb-6" id="drop-zone" role="button" aria-label="Upload Ticket or Landmark" tabindex="0">
 <span class="material-symbols-outlined text-outline group-hover:text-secondary text-[32px] mb-2 transition-colors">upload_file</span>
 <p class="font-body-md text-body-md text-on-surface font-medium" data-i18n="fp_upload">Upload Ticket or Landmark</p>
 <p class="font-label-md text-label-md text-on-surface-variant mt-1" data-i18n="fp_drag">Drag &amp; drop or click to browse</p>
@@ -515,7 +515,7 @@
 <span class="material-symbols-outlined text-[18px]">image</span>
                             <span data-i18n="fp_choose">CHOOSE IMAGE</span>
                         </button>
-<div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-2xl p-6 shadow-sm text-gray-800 dark:text-gray-300 mt-2 transition-colors">
+<div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-2xl p-6 shadow-sm text-gray-800 dark:text-gray-300 mt-2 transition-colors" aria-live="polite" aria-atomic="true">
 <div class="flex items-center gap-2 mb-3">
 <span class="material-symbols-outlined text-secondary">smart_toy</span>
 <span class="font-bold text-sm tracking-wide text-secondary uppercase" data-i18n="fp_ai_nav">AI Navigation Assistant</span>
@@ -575,8 +575,8 @@
     <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-gray-800 shadow-2xl rounded-2xl p-8 max-w-md w-full text-center">
         <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">Restricted Access:<br>Tactical Command</h2>
         <div class="space-y-4 mb-8">
-            <input type="text" placeholder="Admin Username" class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800 text-gray-800 dark:text-gray-100 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 font-sans shadow-sm">
-            <input type="password" placeholder="Passcode" class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800 text-gray-800 dark:text-gray-100 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 font-sans shadow-sm">
+            <input type="text" placeholder="Admin Username" aria-label="Admin Username" class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800 text-gray-800 dark:text-gray-100 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 font-sans shadow-sm">
+            <input type="password" placeholder="Passcode" aria-label="Passcode" class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800 text-gray-800 dark:text-gray-100 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 font-sans shadow-sm">
         </div>
         <div class="flex flex-col gap-3">
             <button class="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-3 font-semibold transition-colors shadow-md">Authenticate</button>
@@ -973,7 +973,7 @@ Awaiting simulation parameters...
                 <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2">
                     <span class="material-symbols-outlined text-purple-600">summarize</span> Post-Mortem Report
                 </h2>
-                <button id="btn-close-modal" class="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
+                <button id="btn-close-modal" aria-label="Close Modal" class="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
                     <span class="material-symbols-outlined">close</span>
                 </button>
             </div>

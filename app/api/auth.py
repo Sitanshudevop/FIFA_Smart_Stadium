@@ -4,14 +4,16 @@ from google.auth.transport import requests
 from app.models.schemas import GoogleAuthRequest, GoogleAuthResponse
 from app.core.config import settings
 import uuid
+import asyncio
 
 router = APIRouter()
 
 @router.post("/auth/google", response_model=GoogleAuthResponse, tags=["auth"])
 async def google_auth(request: GoogleAuthRequest):
     try:
-        # Verify Identity Structural Integrity
-        idinfo = id_token.verify_oauth2_token(
+        # Verify Identity Structural Integrity (Offloaded to a thread to prevent blocking event loop)
+        idinfo = await asyncio.to_thread(
+            id_token.verify_oauth2_token,
             request.credential, 
             requests.Request(), 
             settings.GOOGLE_CLIENT_ID,
