@@ -7,3 +7,4 @@ google-genai
 async-lru
 python-dotenv
 pydantic-settings
+python-multipart
