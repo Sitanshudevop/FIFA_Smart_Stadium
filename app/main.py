@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
+
 from app.api.router import api_router
 from app.core.rate_limit import limiter
 
@@ -17,18 +18,27 @@ app.add_middleware(
         "http://127.0.0.1:8000",
         "https://fifa-smart-stadium.firebaseapp.com",
         "https://fifa-smart-stadium.web.app",
-        "https://fifa-smart-stadium-ui.onrender.com"
+        "https://fifa-smart-stadium-ui.onrender.com",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+
 @app.get("/api/v1/health")
-def health_check():
+def health_check() -> dict[str, str]:
+    """
+    Check the health status of the API.
+    
+    Returns:
+        dict[str, str]: A dictionary indicating the API status.
+    """
     return {"status": "operational"}
+
 
 app.include_router(api_router, prefix="/api/v1")
 
 from fastapi.staticfiles import StaticFiles
+
 app.mount("/", StaticFiles(directory="static", html=True), name="static")

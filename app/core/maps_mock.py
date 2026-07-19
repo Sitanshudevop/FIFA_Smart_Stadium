@@ -1,5 +1,6 @@
 class GoogleMapsMockClient:
-    def __init__(self):
+    def __init__(self) -> None:
+        """Initialize the Google Maps Mock Client with stadium coordinates."""
         self.stadiums = {
             "MetLife Stadium, East Rutherford, NJ": {"lat": 40.8128, "lng": -74.0745},
             "AT&T Stadium, Dallas": {"lat": 32.7473, "lng": -97.0945},
@@ -9,7 +10,10 @@ class GoogleMapsMockClient:
             "Lincoln Financial Field, Philadelphia": {"lat": 39.9012, "lng": -75.1675},
             "NRG Stadium, Houston": {"lat": 29.6847, "lng": -95.4107},
             "Lumen Field, Seattle": {"lat": 47.5952, "lng": -122.3316},
-            "Levi's Stadium, San Francisco Bay Area": {"lat": 37.4032, "lng": -121.9698},
+            "Levi's Stadium, San Francisco Bay Area": {
+                "lat": 37.4032,
+                "lng": -121.9698,
+            },
             "SoFi Stadium, Los Angeles": {"lat": 33.9534, "lng": -118.3387},
             "Arrowhead Stadium, Kansas City": {"lat": 39.0489, "lng": -94.4839},
             "Estadio Azteca, Mexico City": {"lat": 19.3029, "lng": -99.1505},
@@ -25,23 +29,26 @@ class GoogleMapsMockClient:
         Returns a list of structured dictionaries matching the GCP JSON response format.
         """
         coords = self.stadiums.get(address, {"lat": 0.0, "lng": 0.0})
-        
+
         return [
             {
                 "address_components": [],
                 "formatted_address": address,
                 "geometry": {
-                    "location": {
-                        "lat": coords["lat"],
-                        "lng": coords["lng"]
-                    },
+                    "location": {"lat": coords["lat"], "lng": coords["lng"]},
                     "location_type": "ROOFTOP",
                     "viewport": {
-                        "northeast": {"lat": coords["lat"] + 0.01, "lng": coords["lng"] + 0.01},
-                        "southwest": {"lat": coords["lat"] - 0.01, "lng": coords["lng"] - 0.01}
-                    }
+                        "northeast": {
+                            "lat": coords["lat"] + 0.01,
+                            "lng": coords["lng"] + 0.01,
+                        },
+                        "southwest": {
+                            "lat": coords["lat"] - 0.01,
+                            "lng": coords["lng"] - 0.01,
+                        },
+                    },
                 },
                 "place_id": f"mock_place_id_{hash(address)}",
-                "types": ["stadium", "point_of_interest", "establishment"]
+                "types": ["stadium", "point_of_interest", "establishment"],
             }
         ]
