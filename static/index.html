@@ -1552,7 +1552,7 @@ Awaiting simulation parameters...
                         textSpan.innerText = 'PLAYING...';
                         btnPlayAudio.disabled = true;
                         
-                        const apiResponsePayload = await fetch('/api/v1/tts', {
+                        const apiResponsePayload = await fetch(`${API_BASE}/tts`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ text: textToPlay })
@@ -2256,7 +2256,7 @@ Awaiting simulation parameters...
             }
 
             // Init Bracket & Map
-            fetch('/api/v1/config')
+            fetch(`${API_BASE}/config`)
                 .then(apiResponsePayload => apiResponsePayload.json())
                 .then(data => {
                     initMap();
@@ -2335,7 +2335,7 @@ Awaiting simulation parameters...
             };
 
             // Fetch Live Bracket
-            fetch('/api/v1/live-bracket')
+            fetch(`${API_BASE}/live-bracket`)
                 .then(apiResponsePayload => apiResponsePayload.json())
                 .then(data => {
                     const container = document.getElementById('bracket-container');
@@ -2410,7 +2410,7 @@ Awaiting simulation parameters...
         // Google Auth Logic
         window.handleCredentialResponse = async (response) => {
             try {
-                const apiResponsePayload = await fetch('/api/v1/auth/google', {
+                const apiResponsePayload = await fetch(`${API_BASE}/auth/google`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ credential: response.credential })
