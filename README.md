@@ -31,6 +31,29 @@ Built for **scalability, high accessibility, and extreme performance**, this arc
 
 ---
 
+## 🎯 Problem Statement & Alignment
+
+Managing massive, multi-venue events like the FIFA 2026 World Cup presents unprecedented operational challenges. The core issues we are solving include **managing high-density crowd dynamics, ensuring immediate fan safety during emergencies, and optimizing critical resource allocation** across vast physical spaces. 
+
+When tens of thousands of fans move simultaneously, traditional static operations fail, leading to dangerous bottlenecks, delayed emergency responses, and a poor attendee experience.
+
+### Solution Mapping
+
+Every feature in the Smart Stadium platform is purposefully engineered to directly solve these critical operational pain points:
+
+| Platform Feature | Operational Problem Solved |
+| :--- | :--- |
+| **Multimodal Fan Navigation** | Prevents localized bottlenecks and crushing hazards by dynamically routing fans away from congestion in real-time based on their ticket location and visual surroundings. |
+| **Proactive Crisis Simulation** | Eliminates reactive guesswork by utilizing GenAI to instantly generate step-by-step mitigation plans for sudden crises (e.g., medical emergencies, gate breaches, or severe weather). |
+| **Agentic Volunteer Dispatch** | Solves resource starvation by automatically identifying the most severe incidents and dispatching the closest available staff before a situation escalates. |
+| **Real-time ROI & Token Tracking** | Addresses operational cost blowouts by ensuring that the high-frequency AI generation required for crowd safety does not exceed event budgets. |
+
+### The Critical Role of AI Integration
+
+Our GenAI integrations are not superficial add-ons. **They are essential tools for real-time scale.** During a crisis, human operators cannot manually parse thousands of incoming fan queries or calculate optimal evacuation routes for 80,000 people instantly. By utilizing the `gemini-3.5-flash` model, the platform acts as an autonomous force multiplier—processing multimodal inputs (like a photo of a crowded gate) and instantaneously generating actionable, localized guidance to maintain safety and flow.
+
+---
+
 ## 🚀 Key Enterprise Features
 
 ### 🧠 AI & Multimodal Intelligence
