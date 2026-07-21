@@ -215,7 +215,7 @@
 </head>
 <body class="bg-background dark:bg-black text-on-surface dark:text-gray-100 min-h-screen font-body-md antialiased selection:bg-primary-fixed selection:text-on-primary-fixed cursor-default">
 <!-- Landing View Overlay -->
-<div id="landing-view" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background dark:bg-black text-on-surface dark:text-gray-100 transition-opacity duration-500 opacity-100">
+<div id="landing-view" class="fixed inset-0 z-[100] flex flex-col items-center justify-start sm:justify-center overflow-y-auto bg-background dark:bg-black text-on-surface dark:text-gray-100 transition-opacity duration-500 opacity-100 py-12 sm:py-0">
     <div class="absolute top-4 right-4 sm:top-8 sm:right-8 flex items-center gap-2 sm:gap-4">
         <!-- Language Selector Dropdown for Landing -->
         <div class="relative inline-block text-left" id="lang-selector-landing-container">
@@ -236,7 +236,7 @@
         </div>
         <button id="btn-theme-landing" aria-label="Toggle Theme" class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer text-[32px]">dark_mode</button>
     </div>
-    <div class="max-w-5xl px-4 sm:px-8 text-center">
+    <div class="max-w-5xl px-4 sm:px-8 text-center pt-20 sm:pt-0">
         <span class="material-symbols-outlined text-primary text-[48px] sm:text-[72px] mb-4 sm:mb-6 drop-shadow-md" data-icon="stadium" data-weight="fill" style="font-variation-settings: 'FILL' 1;">stadium</span>
         <h1 class="font-display text-display text-on-surface mb-4 sm:mb-6 tracking-tight font-bold text-2xl sm:text-4xl lg:text-5xl" data-i18n="title">FIFA 2026 Smart Stadium Command Center</h1>
         <p class="font-body-lg text-body-lg text-on-surface-variant mb-8 sm:mb-16 max-w-2xl mx-auto text-base sm:text-xl" data-i18n="subtitle">GenAI-powered operational intelligence for fans, organizers, and venue staff.</p>
@@ -403,7 +403,7 @@
         </style>
         <div class="flex flex-col border border-outline-variant rounded-xl overflow-hidden bg-white dark:bg-zinc-900 shadow-inner">
             <div class="bg-surface-container-low px-4 py-2 border-b border-outline-variant font-label-md font-bold text-gray-700 dark:text-gray-300 flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">emoji_events</span> Knockout Stage (Live)</div>
-            <div class="flex-grow p-3 sm:p-5 custom-scrollbar" style="display: flex; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 1rem;">
+            <div class="flex-grow p-3 sm:p-5 custom-scrollbar w-full min-w-0" style="display: flex; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 1rem;">
                 <div id="bracket-container" class="flex min-w-max h-full gap-8">
                     <!-- Dynamic content injected here -->
                     <div class="flex items-center justify-center w-[400px] sm:w-[800px] h-full text-gray-500 py-6 sm:py-10">
@@ -583,7 +583,7 @@
 <section class="hidden animate-fade-in relative" id="view-ops-room">
 <!-- Admin Login Gate -->
 <div id="ops-login-gate" class="fixed inset-0 min-h-screen z-50 flex items-center justify-center p-3 sm:p-4 backdrop-blur-md bg-white/60 dark:bg-black/60">
-    <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-gray-800 shadow-2xl rounded-2xl p-5 sm:p-8 max-w-md w-full text-center">
+    <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-gray-800 shadow-2xl rounded-2xl p-5 sm:p-8 w-[95%] max-w-md mx-auto text-center">
         <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">Restricted Access:<br>Tactical Command</h2>
         <div class="space-y-4 mb-8">
             <input type="text" placeholder="Admin Username" aria-label="Admin Username" class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800 text-gray-800 dark:text-gray-100 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 font-sans shadow-sm">
@@ -711,7 +711,7 @@
                 <span class="material-symbols-outlined text-orange-600">location_on</span>
                 📍 Zone Anomaly Heatmap
             </h3>
-            <div class="grid grid-cols-3 gap-2 sm:gap-3 w-full bg-gray-50 dark:bg-black p-2 sm:p-5 rounded-xl border border-gray-200 dark:border-zinc-800 flex-grow shadow-inner">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 w-full bg-gray-50 dark:bg-black p-2 sm:p-5 rounded-xl border border-gray-200 dark:border-zinc-800 flex-grow shadow-inner min-w-0">
                 <!-- Normal Zones -->
                 <div id="zone-A1" class="bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-xl min-h-[90px] h-auto p-3 flex items-center justify-center font-bold text-gray-500 dark:text-gray-400 shadow-sm transition-all duration-300 cursor-pointer">Z-A1</div>
                 <div id="zone-A2" class="bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-xl min-h-[90px] h-auto p-3 flex items-center justify-center font-bold text-gray-500 dark:text-gray-400 shadow-sm transition-all duration-300 cursor-pointer">Z-A2</div>
