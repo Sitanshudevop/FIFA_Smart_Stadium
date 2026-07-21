@@ -216,7 +216,7 @@
 <body class="bg-background dark:bg-black text-on-surface dark:text-gray-100 min-h-screen font-body-md antialiased selection:bg-primary-fixed selection:text-on-primary-fixed cursor-default">
 <!-- Landing View Overlay -->
 <div id="landing-view" class="fixed inset-0 z-[100] flex flex-col items-center justify-start sm:justify-center overflow-y-auto bg-background dark:bg-black text-on-surface dark:text-gray-100 transition-opacity duration-500 opacity-100 py-12 sm:py-0">
-    <div class="absolute top-4 right-4 sm:top-8 sm:right-8 flex items-center gap-2 sm:gap-4">
+    <div class="w-full flex justify-end gap-4 items-center p-4 sm:p-8">
         <!-- Language Selector Dropdown for Landing -->
         <div class="relative inline-block text-left" id="lang-selector-landing-container">
             <button id="btn-lang-selector-landing" aria-label="Language Selector" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors cursor-pointer font-label-md font-bold uppercase border border-outline-variant/30 rounded-lg px-3 py-1.5 hover:bg-surface-container-low shadow-sm bg-white dark:bg-zinc-900">
@@ -236,26 +236,26 @@
         </div>
         <button id="btn-theme-landing" aria-label="Toggle Theme" class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer text-[32px]">dark_mode</button>
     </div>
-    <div class="max-w-5xl px-4 sm:px-8 text-center pt-20 sm:pt-0">
+    <div class="max-w-5xl px-4 sm:px-8 text-center pt-8 sm:pt-0">
         <span class="material-symbols-outlined text-primary text-[48px] sm:text-[72px] mb-4 sm:mb-6 drop-shadow-md" data-icon="stadium" data-weight="fill" style="font-variation-settings: 'FILL' 1;">stadium</span>
-        <h1 class="font-display text-display text-on-surface mb-4 sm:mb-6 tracking-tight font-bold text-2xl sm:text-4xl lg:text-5xl" data-i18n="title">FIFA 2026 Smart Stadium Command Center</h1>
-        <p class="font-body-lg text-body-lg text-on-surface-variant mb-8 sm:mb-16 max-w-2xl mx-auto text-base sm:text-xl" data-i18n="subtitle">GenAI-powered operational intelligence for fans, organizers, and venue staff.</p>
+        <h1 class="font-display text-on-surface mb-4 sm:mb-6 tracking-tight font-bold text-2xl md:text-4xl lg:text-5xl" data-i18n="title">FIFA 2026 Smart Stadium Command Center</h1>
+        <p class="font-body-lg text-on-surface-variant mb-8 sm:mb-16 max-w-2xl mx-auto text-sm md:text-lg" data-i18n="subtitle">GenAI-powered operational intelligence for fans, organizers, and venue staff.</p>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-16 text-left py-6 sm:py-10 border-t border-b border-outline-variant/50">
-            <div class="flex flex-col gap-3">
-                <span class="material-symbols-outlined text-secondary text-[36px]">view_in_ar</span>
-                <h3 class="font-headline-md text-headline-md" data-i18n="nav_title">Multimodal Fan Navigation</h3>
-                <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="nav_desc">Real-time routing via visual ticket and landmark analysis.</p>
+            <div class="flex flex-col gap-2 sm:gap-3">
+                <span class="material-symbols-outlined text-secondary text-[32px] md:text-[36px]">view_in_ar</span>
+                <h3 class="font-headline-md text-lg md:text-xl font-bold" data-i18n="nav_title">Multimodal Fan Navigation</h3>
+                <p class="font-body-md text-sm md:text-base text-on-surface-variant" data-i18n="nav_desc">Real-time routing via visual ticket and landmark analysis.</p>
             </div>
-            <div class="flex flex-col gap-3 md:border-l border-outline-variant/50 md:pl-8">
-                <span class="material-symbols-outlined text-tertiary-container text-[36px]">psychology</span>
-                <h3 class="font-headline-md text-headline-md" data-i18n="sim_title">Proactive Crisis Simulation</h3>
-                <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="sim_desc">GenAI 'What-If' scenarios to model crowd dynamics and mitigate risks.</p>
+            <div class="flex flex-col gap-2 sm:gap-3 md:border-l border-outline-variant/50 md:pl-8">
+                <span class="material-symbols-outlined text-tertiary-container text-[32px] md:text-[36px]">psychology</span>
+                <h3 class="font-headline-md text-lg md:text-xl font-bold" data-i18n="sim_title">Proactive Crisis Simulation</h3>
+                <p class="font-body-md text-sm md:text-base text-on-surface-variant" data-i18n="sim_desc">GenAI 'What-If' scenarios to model crowd dynamics and mitigate risks.</p>
             </div>
-            <div class="flex flex-col gap-3 md:border-l border-outline-variant/50 md:pl-8">
-                <span class="material-symbols-outlined text-primary text-[36px]">auto_awesome</span>
-                <h3 class="font-headline-md text-headline-md" data-i18n="disp_title">Agentic Volunteer Dispatch</h3>
-                <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="disp_desc">Intelligent resource allocation based on severity and proximity.</p>
+            <div class="flex flex-col gap-2 sm:gap-3 md:border-l border-outline-variant/50 md:pl-8">
+                <span class="material-symbols-outlined text-primary text-[32px] md:text-[36px]">auto_awesome</span>
+                <h3 class="font-headline-md text-lg md:text-xl font-bold" data-i18n="disp_title">Agentic Volunteer Dispatch</h3>
+                <p class="font-body-md text-sm md:text-base text-on-surface-variant" data-i18n="disp_desc">Intelligent resource allocation based on severity and proximity.</p>
             </div>
         </div>
         
